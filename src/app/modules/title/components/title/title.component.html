@@ -1,0 +1,27 @@
+<div class="title">
+  <mat-toolbar color="primary">Titles</mat-toolbar>
+
+  <div class="title__loading" *ngIf="isLoading">
+    <div class="title__loading-content">
+      <mat-spinner diameter="150"></mat-spinner>
+      Downloading contents...
+    </div>
+  </div>
+
+  <mat-drawer-container *ngIf="!isLoading">
+    <mat-drawer class="title__side" mode="side" opened>
+      <app-filters
+        (search)="onSearch($event)"
+        [isSearchLoading]="isSearchLoading"
+        (cancelSearch)="onCancelSearch($event)"
+      ></app-filters>
+    </mat-drawer>
+    <mat-drawer-content class="title__content">
+      <app-list
+        [titles]="titles"
+        [isSearchLoading]="isSearchLoading"
+        (edit)="onEdit($event)"
+      ></app-list>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

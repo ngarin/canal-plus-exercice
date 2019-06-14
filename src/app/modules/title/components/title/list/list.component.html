@@ -1,0 +1,48 @@
+<div class="list">
+  <mat-table [dataSource]="titles">
+    <ng-container matColumnDef="originalTitle">
+      <mat-header-cell *matHeaderCellDef>
+        originalTitle
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element[2] }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="startYear">
+      <mat-header-cell *matHeaderCellDef>
+        startYear
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element[5] }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="genre">
+      <mat-header-cell *matHeaderCellDef>
+        genre
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element[1] }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef>
+        Edit
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button (click)="onEdit(element)" color="accent" mat-icon-button>
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <div class="list__loading" *ngIf="isSearchLoading">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>

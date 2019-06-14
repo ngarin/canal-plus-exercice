@@ -1,0 +1,24 @@
+<form class="filters" [formGroup]="filtersForm">
+  <mat-form-field class="filters__field">
+    <input matInput placeholder="Search a title" formControlName='query'>
+  </mat-form-field>
+
+  <mat-form-field class="filters__field">
+    <mat-label>Year</mat-label>
+    <mat-select formControlName="year">
+      <mat-option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    (click)="onSearch()"
+    [color]="_isSearchLoading ? 'warn' : 'primary'"
+    class="filters__search-btn"
+  >
+    <mat-icon *ngIf="!_isSearchLoading">search</mat-icon>
+    <mat-icon *ngIf="_isSearchLoading">cancel</mat-icon>
+  </button>
+</form>
